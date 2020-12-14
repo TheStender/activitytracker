@@ -1,0 +1,42 @@
+﻿@using System.Data;
+
+<head>
+    <style>
+        #activity-table {
+            border: 1px solid black;
+            border-collapse: separate;
+            border-spacing: 30px 15px;
+        }
+
+        #tableHeading {
+            border-bottom: 3px solid black;
+        }
+    </style>
+</head>
+
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<h3>@ViewData["Greeting"]</h3>
+
+@{
+    DataTable dt = (DataTable)ViewData["Database!"];
+}
+
+<p>Use this area to provide additional information.</p>
+
+<table id="activity-table">
+    <tr>
+        <th id="tableHeading">Activity</th>
+        <th id="tableHeading">Location</th>
+    </tr>
+    @foreach (DataRow row in dt.Rows)
+    {
+        <tr>
+            <td>@row.ItemArray[0]</td>
+            <td>@row.ItemArray[1]</td>
+        </tr>
+    }
+</table>

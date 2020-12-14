@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Activities";
+}
+
+<h2>@ViewData["Message"]</h2>
+
+
+@model activitytracker.Models.ActivityModel
+
+@using (Html.BeginForm("Create", "Activity", FormMethod.Post))
+{
+    //new code starts here <!--
+
+    @Html.DropDownListFor(x => x.Activity, new List<SelectListItem>
+    {
+        new SelectListItem() {Text = "Enter Activity", Value="defaultSelection"},
+        new SelectListItem() {Text = "Biking (Road)", Value="roadBiking"},
+        new SelectListItem() {Text = "Biking (Mountain)", Value="mountainBiking"},
+        new SelectListItem() {Text = "Hiking", Value="hiking"},
+        new SelectListItem() {Text = "Swimming", Value="swimming"},
+        new SelectListItem() {Text = "Running", Value="running"},
+        new SelectListItem() {Text = "Walking", Value="walking"},
+        new SelectListItem() {Text = "Rock Climbing", Value="rockClimbing"},
+        new SelectListItem() {Text = "Kayaking", Value="kayaking"}
+    }) @:&nbsp;
+
+    //new code ends here
+    @Html.LabelFor(model => model.Activity)@:&nbsp;
+    @Html.TextBoxFor(model => model.Activity, new { placeholder = "Enter Activity Here" })@:&nbsp;
+    @Html.ValidationMessageFor(model => model.Activity)
+    @Html.LabelFor(model => model.Location)@:&nbsp;
+    @Html.TextBoxFor(model => model.Location, new { placeholder = "Enter Location Here" })@:&nbsp;
+    @Html.ValidationMessageFor(model => model.Location)
+    <button type="submit" class="btn btn-primary">Submit Data</button>
+}
+
